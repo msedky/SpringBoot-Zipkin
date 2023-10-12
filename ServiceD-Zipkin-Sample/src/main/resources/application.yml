@@ -1,0 +1,13 @@
+server:
+  port: 7061
+  context-path: /serviced
+spring:
+ # application:
+  #  name: ServiceD
+  data:
+    mongodb:
+      username: citz
+      password: citz
+      database: citizens-db
+      port: 27031
+      host: localhost
