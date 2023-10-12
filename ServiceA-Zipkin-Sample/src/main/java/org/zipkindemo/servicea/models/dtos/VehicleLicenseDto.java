@@ -12,13 +12,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class DrivingLicenseDto implements Serializable {
+public class VehicleLicenseDto implements Serializable {
 
     private String vehicleId;
     private String motorNumber;
     private String chassisNumber;
     private ModelDto model;
     private Short vehicleModelYear;
+    private ColorEnum vehicleColor;
     private LocalDateTime extractDateTime;
     private LocalDate expiryDate;
     private CitizenDto owner;

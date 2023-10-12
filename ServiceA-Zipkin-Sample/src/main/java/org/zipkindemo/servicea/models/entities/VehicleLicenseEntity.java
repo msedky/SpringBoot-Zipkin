@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
+import org.zipkindemo.servicea.models.dtos.ColorEnum;
 import org.zipkindemo.servicea.models.dtos.GenderEnum;
 
 import java.io.Serializable;
@@ -19,7 +20,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class DrivingLicenseEntity implements Serializable {
+public class VehicleLicenseEntity implements Serializable {
 
     @Id
     @Column(name = "vehicle_id", updatable = false)
@@ -36,6 +37,9 @@ public class DrivingLicenseEntity implements Serializable {
 
     @Column(name = "vehicle_model_year")
     private Short vehicleModelYear;
+
+    @Column(name = "vehicle_color")
+    private ColorEnum vehicleColor;
 
     @Column(name = "extract_date_time", updatable = false)
     private LocalDateTime extractDateTime;

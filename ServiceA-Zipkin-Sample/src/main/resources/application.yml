@@ -18,6 +18,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres?useSSL=false
     username: db_a
     password: db_a
-    default_schema: db_a
     driver-class-name: org.postgresql.Driver
     dialect: org.hibernate.dialect.PostgreSQLDialect
+
+citizen-service:
+  name: citizen-service
+  url: http://localhost:7061

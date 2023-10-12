@@ -1,12 +1,9 @@
 package org.zipkindemo.servicea.models.dtos.request;
 
 import lombok.*;
-import org.zipkindemo.servicea.models.dtos.CitizenDto;
 import org.zipkindemo.servicea.models.dtos.ModelDto;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -14,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class CreateDrivingLicenseRequestDto implements Serializable {
+public class CreateVehicleLicenseRequestDto implements Serializable {
     private String motorNumber;
     private String chassisNumber;
     private ModelDto model;
