@@ -1,0 +1,26 @@
+server:
+  port: 7071
+  contextPath: /servicea
+
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.PostgreSQL94Dialect
+        default_schema: db_a
+        temp:
+          use_jdbc_metadata_defaults: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?useSSL=false
+    username: db_a
+    password: db_a
+    driver-class-name: org.postgresql.Driver
+    dialect: org.hibernate.dialect.PostgreSQLDialect
+
+citizen-service:
+  name: citizen-service
+  url: http://localhost:7061
