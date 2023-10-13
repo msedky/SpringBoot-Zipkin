@@ -1,6 +1,7 @@
 package org.zipkindemo.servicea.models.dtos.request;
 
 import lombok.*;
+import org.zipkindemo.servicea.models.dtos.ColorEnum;
 import org.zipkindemo.servicea.models.dtos.ModelDto;
 
 import java.io.Serializable;
@@ -16,6 +17,7 @@ public class CreateVehicleLicenseRequestDto implements Serializable {
     private String chassisNumber;
     private ModelDto model;
     private Short vehicleModelYear;
+    private ColorEnum vehicleColor;
     private Short licensePeriodMonths;
     private String ownerNid;
 }
