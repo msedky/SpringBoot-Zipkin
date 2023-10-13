@@ -37,9 +37,9 @@ public class VehicleLicenseController {
     @GetMapping("/{ownerNid}")
     public ResponseEntity<BaseResponseDto> getByOwnerNid(@PathVariable String ownerNid) {
         logger.info("searching vehicle licenses by owner national id [" + ownerNid + "]");
-        List<VehicleLicenseDto> drivingLicenseDtoList = vehicleLicenseService.getByOwnerNid(ownerNid);
+        List<VehicleLicenseDto> vehicleLicenseDtoList = vehicleLicenseService.getByOwnerNid(ownerNid);
         logger.info("found vehicle licenses by owner national id [" + ownerNid + "]");
-        logger.info(drivingLicenseDtoList.toString());
-        return ResponseEntity.ok(BaseResponseDto.success(drivingLicenseDtoList));
+        logger.info(vehicleLicenseDtoList.toString());
+        return ResponseEntity.ok(BaseResponseDto.success(vehicleLicenseDtoList));
     }
 }
