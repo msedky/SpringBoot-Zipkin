@@ -22,22 +22,22 @@ public class VehicleLicenseController {
     private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
     @Autowired
-    @Qualifier("drivingLicenseServiceImpl")
-    private VehicleLicenseService drivingLicenseService;
+    @Qualifier("vehicleLicenseServiceImpl")
+    private VehicleLicenseService vehicleLicenseService;
 
     @PostMapping
-    public ResponseEntity<BaseResponseDto> create(@RequestBody CreateVehicleLicenseRequestDto createDrivingLicenseRequestDto) {
+    public ResponseEntity<BaseResponseDto> create(@RequestBody CreateVehicleLicenseRequestDto createVehicleLicenseRequestDto) {
         logger.info("creating vehicle license");
-        VehicleLicenseDto createdDrivingLicenseDto = drivingLicenseService.create(createDrivingLicenseRequestDto);
+        VehicleLicenseDto createdVehicleLicenseDto = vehicleLicenseService.create(createVehicleLicenseRequestDto);
         logger.info("vehicle license created successfully");
-        logger.info(createdDrivingLicenseDto.toString());
-        return ResponseEntity.ok(BaseResponseDto.success(createdDrivingLicenseDto));
+        logger.info(createdVehicleLicenseDto.toString());
+        return ResponseEntity.ok(BaseResponseDto.success(createdVehicleLicenseDto));
     }
 
     @GetMapping("/{ownerNid}")
     public ResponseEntity<BaseResponseDto> getByOwnerNid(@PathVariable String ownerNid) {
         logger.info("searching vehicle licenses by owner national id [" + ownerNid + "]");
-        List<VehicleLicenseDto> drivingLicenseDtoList = drivingLicenseService.getByOwnerNid(ownerNid);
+        List<VehicleLicenseDto> drivingLicenseDtoList = vehicleLicenseService.getByOwnerNid(ownerNid);
         logger.info("found vehicle licenses by owner national id [" + ownerNid + "]");
         logger.info(drivingLicenseDtoList.toString());
         return ResponseEntity.ok(BaseResponseDto.success(drivingLicenseDtoList));

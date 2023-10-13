@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-@Component("drivingLicenseServiceImpl")
+@Component("vehicleLicenseServiceImpl")
 public class VehicleLicenseServiceImpl implements VehicleLicenseService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
@@ -33,7 +33,7 @@ public class VehicleLicenseServiceImpl implements VehicleLicenseService {
 
     @Override
     public VehicleLicenseDto create(CreateVehicleLicenseRequestDto createDrivingLicenseRequestDto) {
-        logger.info("DrivingLicenseServiceImpl.create(" + createDrivingLicenseRequestDto + ")");
+        logger.info("VehicleLicenseServiceImpl.create(" + createDrivingLicenseRequestDto + ")");
         /*getting citizen info from citizen feign client*/
         BaseResponseDto<CitizenDto> citizenClientBaseResponseDto = citizenClient.getCizienByNid(createDrivingLicenseRequestDto.getOwnerNid());
         if (citizenClientBaseResponseDto.getStatus() != 200) {
