@@ -15,6 +15,7 @@ import org.zipkindemo.servicea.models.entities.VehicleLicenseEntity;
 import org.zipkindemo.servicea.repos.VehicleLicenseRepository;
 import org.zipkindemo.servicea.services.VehicleLicenseService;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,7 @@ public class VehicleLicenseServiceImpl implements VehicleLicenseService {
                 .ownerGender(citizenDto.getGender())
                 .ownerBirthDate(citizenDto.getBirthDate())
                 .extractDateTime(LocalDateTime.now())
+                .expiryDate(LocalDate.now().plusMonths(createDrivingLicenseRequestDto.getLicensePeriodMonths()))
                 .build();
         VehicleLicenseEntity newDrivingLicenseEntity = vehicleLicenseRepository.save(vehicleLicenseEntity);
         VehicleLicenseDto vehicleLicenseDto = new VehicleLicenseDto();
