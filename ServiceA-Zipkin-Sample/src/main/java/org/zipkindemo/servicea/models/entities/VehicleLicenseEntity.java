@@ -1,9 +1,6 @@
 package org.zipkindemo.servicea.models.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.zipkindemo.servicea.models.dtos.ColorEnum;
 import org.zipkindemo.servicea.models.dtos.GenderEnum;
@@ -38,6 +35,7 @@ public class VehicleLicenseEntity implements Serializable {
     @Column(name = "vehicle_model_year")
     private Short vehicleModelYear;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "vehicle_color")
     private ColorEnum vehicleColor;
 
@@ -57,6 +55,7 @@ public class VehicleLicenseEntity implements Serializable {
     private String ownerLastName;
     @Column(name = "owner_bdate")
     private LocalDate ownerBirthDate;
+    @Enumerated(EnumType.STRING)
     @Column(name = "owner_gender")
     private GenderEnum ownerGender;
 }
