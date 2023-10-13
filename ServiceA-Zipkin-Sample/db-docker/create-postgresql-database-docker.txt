@@ -1,0 +1,2 @@
+docker build --tag=postgres-5433 --force-rm=true .
+docker run --name postgres-db5433 -p 5433:5432 -d postgres-5433

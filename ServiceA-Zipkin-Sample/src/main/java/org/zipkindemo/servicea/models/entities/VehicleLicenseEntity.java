@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "driving-licenses")
+@Table(name = "vehicle-licenses")
 @Data
 @Builder
 @NoArgsConstructor
