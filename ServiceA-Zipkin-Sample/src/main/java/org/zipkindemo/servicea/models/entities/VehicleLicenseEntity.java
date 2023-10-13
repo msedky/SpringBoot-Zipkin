@@ -29,7 +29,7 @@ public class VehicleLicenseEntity implements Serializable {
     @Column(name = "motor_number", unique = true, updatable = false)
     private String motorNumber;
 
-    @Column(name = "motor_number", unique = true, updatable = false)
+    @Column(name = "chassis_number", unique = true, updatable = false)
     private String chassisNumber;
 
     @Column(name = "model", updatable = false)
