@@ -51,6 +51,7 @@ public class VehicleLicenseServiceImpl implements VehicleLicenseService {
                 .chassisNumber(createDrivingLicenseRequestDto.getChassisNumber())
                 .vehicleModel(createDrivingLicenseRequestDto.getModel().getModelName())
                 .vehicleModelYear(createDrivingLicenseRequestDto.getVehicleModelYear())
+                .vehicleColor(createDrivingLicenseRequestDto.getVehicleColor())
                 .ownerNid(citizenDto.getNid())
                 .ownerFirstName(citizenDto.getFirstName())
                 .ownerMidName(citizenDto.getSecondName() + " " + citizenDto.getThirdName())
