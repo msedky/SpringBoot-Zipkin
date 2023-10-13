@@ -26,7 +26,7 @@ public class VehicleLicenseServiceImpl implements VehicleLicenseService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     @Autowired
-    private VehicleLicenseRepository drivingLicenseRepository;
+    private VehicleLicenseRepository vehicleLicenseRepository;
 
     @Autowired
     private CitizenClient citizenClient;
@@ -44,7 +44,7 @@ public class VehicleLicenseServiceImpl implements VehicleLicenseService {
         /*generating license id number*/
         String vehicleId = genVehicleId();
 
-        VehicleLicenseEntity drivingLicenseEntity = VehicleLicenseEntity.builder()
+        VehicleLicenseEntity vehicleLicenseEntity = VehicleLicenseEntity.builder()
                 .vehicleId(vehicleId)
                 .motorNumber(createDrivingLicenseRequestDto.getMotorNumber())
                 .chassisNumber(createDrivingLicenseRequestDto.getChassisNumber())
@@ -58,7 +58,7 @@ public class VehicleLicenseServiceImpl implements VehicleLicenseService {
                 .ownerBirthDate(citizenDto.getBirthDate())
                 .extractDateTime(LocalDateTime.now())
                 .build();
-        VehicleLicenseEntity newDrivingLicenseEntity = drivingLicenseRepository.save(drivingLicenseEntity);
+        VehicleLicenseEntity newDrivingLicenseEntity = vehicleLicenseRepository.save(vehicleLicenseEntity);
         VehicleLicenseDto vehicleLicenseDto = new VehicleLicenseDto();
         BeanUtils.copyProperties(newDrivingLicenseEntity, vehicleLicenseDto);
         vehicleLicenseDto.setOwner(citizenDto);
@@ -77,7 +77,7 @@ public class VehicleLicenseServiceImpl implements VehicleLicenseService {
             citizenDto = new CitizenDto();
             citizenDto.setNid(ownerNid);
         }
-        List<VehicleLicenseEntity> vehicleLicenseEntityList = drivingLicenseRepository.findByOwnerNid(ownerNid);
+        List<VehicleLicenseEntity> vehicleLicenseEntityList = vehicleLicenseRepository.findByOwnerNid(ownerNid);
         if (vehicleLicenseEntityList != null && !vehicleLicenseEntityList.isEmpty()) {
             List<VehicleLicenseDto> vehicleLicenseDtoList = new ArrayList<>();
             for (VehicleLicenseEntity e : vehicleLicenseEntityList) {
