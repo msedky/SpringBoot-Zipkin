@@ -3,6 +3,8 @@ server:
   contextPath: /servicea
 
 spring:
+  application:
+    name: ServiceA
   datasource:
     url: jdbc:postgresql://localhost:5433/postgres?useSSL=false
     username: db_a
@@ -12,10 +14,21 @@ spring:
       hibernate:
         jdbc.lob.non_contextual_creation: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
-  # Hibernate ddl auto (create, create-drop, validate, update)
     hibernate:
       ddl-auto: update
+management:
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+
+
 
 citizen-service:
   name: citizen-service

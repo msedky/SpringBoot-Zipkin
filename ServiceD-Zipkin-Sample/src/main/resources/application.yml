@@ -2,8 +2,8 @@ server:
   port: 7061
   context-path: /serviced
 spring:
- # application:
-  #  name: ServiceD
+  application:
+    name: ServiceD
   data:
     mongodb:
       username: citz
@@ -11,3 +11,15 @@ spring:
       database: citizens-db
       port: 27031
       host: localhost
+
+management:
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: prometheus

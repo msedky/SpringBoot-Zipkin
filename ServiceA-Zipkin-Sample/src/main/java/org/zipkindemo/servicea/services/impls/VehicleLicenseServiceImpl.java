@@ -34,7 +34,7 @@ public class VehicleLicenseServiceImpl implements VehicleLicenseService {
 
     @Override
     public VehicleLicenseDto create(CreateVehicleLicenseRequestDto createDrivingLicenseRequestDto) {
-        logger.info("VehicleLicenseServiceImpl.create(" + createDrivingLicenseRequestDto + ")");
+        logger.debug("VehicleLicenseServiceImpl.create(" + createDrivingLicenseRequestDto + ")");
         /*getting citizen info from citizen feign client*/
         BaseResponseDto<CitizenDto> citizenClientBaseResponseDto = citizenClient.getCizienByNid(createDrivingLicenseRequestDto.getOwnerNid());
         if (citizenClientBaseResponseDto.getStatus() != 200) {
@@ -62,6 +62,7 @@ public class VehicleLicenseServiceImpl implements VehicleLicenseService {
                 .expiryDate(LocalDate.now().plusMonths(createDrivingLicenseRequestDto.getLicensePeriodMonths()))
                 .build();
         VehicleLicenseEntity newDrivingLicenseEntity = vehicleLicenseRepository.save(vehicleLicenseEntity);
+        logger.debug("newDrivingLicenseEntity = " + newDrivingLicenseEntity);
         VehicleLicenseDto vehicleLicenseDto = new VehicleLicenseDto();
         BeanUtils.copyProperties(newDrivingLicenseEntity, vehicleLicenseDto);
         vehicleLicenseDto.setOwner(citizenDto);
@@ -71,6 +72,7 @@ public class VehicleLicenseServiceImpl implements VehicleLicenseService {
 
     @Override
     public List<VehicleLicenseDto> getByOwnerNid(String ownerNid) {
+        logger.debug("VehicleLicenseServiceImpl.getByOwnerNid(" + ownerNid + ")");
         /*getting citizen info from citizen feign client*/
         BaseResponseDto<CitizenDto> citizenClientBaseResponseDto = citizenClient.getCizienByNid(ownerNid);
         CitizenDto citizenDto = null;
@@ -81,6 +83,7 @@ public class VehicleLicenseServiceImpl implements VehicleLicenseService {
             citizenDto.setNid(ownerNid);
         }
         List<VehicleLicenseEntity> vehicleLicenseEntityList = vehicleLicenseRepository.findByOwnerNid(ownerNid);
+        logger.debug("vehicleLicenseEntityList = " + vehicleLicenseEntityList);
         if (vehicleLicenseEntityList != null && !vehicleLicenseEntityList.isEmpty()) {
             List<VehicleLicenseDto> vehicleLicenseDtoList = new ArrayList<>();
             for (VehicleLicenseEntity e : vehicleLicenseEntityList) {
