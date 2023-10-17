@@ -1,0 +1,36 @@
+server:
+  port: 7095
+
+management:
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
+        
+spring:
+  application:
+    name: gateway-zipkin-sample
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes[0]:
+        id: serviceD
+        uri: lb://ServiceD
+        predicates:
+          - Path=/citizens/**
+          - Method=POST,PUT,GET,DELETE
+      routes[1]:
+        id: serviceA
+        uri: lb://ServiceA
+        predicates:
+          - Path=/vehiclelicenses/**
+          - Method=POST,PUT,GET,DELETE

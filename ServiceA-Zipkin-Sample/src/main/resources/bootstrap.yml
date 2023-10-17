@@ -1,0 +1,9 @@
+server:
+  port: 0
+spring:
+  application:
+    name: ServiceD
+  cloud:
+    config:
+      uri: http://localhost:7029
+      name: ServiceD
