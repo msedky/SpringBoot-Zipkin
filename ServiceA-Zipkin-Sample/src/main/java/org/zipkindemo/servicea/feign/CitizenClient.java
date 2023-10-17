@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.zipkindemo.servicea.models.dtos.CitizenDto;
 import org.zipkindemo.servicea.models.dtos.response.BaseResponseDto;
 
-//@FeignClient(name = "${citizen-service.name}", url = "${citizen-service.url}")
-@FeignClient(name = "citizen-service", url = "http://localhost:7061")
+@FeignClient(name = "${citizen-service.name}"/*, url = "${citizen-service.url}"*/)
+//@FeignClient(name = "citizen-service", url = "http://localhost:7061")
 public interface CitizenClient {
 
     @GetMapping(value = "/citizens/byNid/{nid}")

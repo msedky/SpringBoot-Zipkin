@@ -1,4 +1,7 @@
 spring:
+  spring:
+    application:
+      name: eureka-zipkin-sample
   cloud:
     config:
       uri: http://localhost:7029

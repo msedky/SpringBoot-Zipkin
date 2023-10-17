@@ -2,8 +2,8 @@ server:
   port: 0
 spring:
   application:
-    name: ServiceD
+    name: ServiceA
   cloud:
     config:
       uri: http://localhost:7029
-      name: ServiceD
+      name: ServiceA
