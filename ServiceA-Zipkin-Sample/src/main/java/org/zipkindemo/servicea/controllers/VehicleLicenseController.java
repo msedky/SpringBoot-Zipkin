@@ -19,27 +19,29 @@ import java.util.List;
 @Api(description = " ", tags = "VehicleLicense", value = " ")
 public class VehicleLicenseController {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
+	private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
-    @Autowired
-    @Qualifier("vehicleLicenseServiceImpl")
-    private VehicleLicenseService vehicleLicenseService;
+	@Autowired
+	@Qualifier("vehicleLicenseServiceImpl")
+	private VehicleLicenseService vehicleLicenseService;
 
-    @PostMapping
-    public ResponseEntity<BaseResponseDto> create(@RequestBody CreateVehicleLicenseRequestDto createVehicleLicenseRequestDto) {
-        logger.info("creating vehicle license");
-        VehicleLicenseDto createdVehicleLicenseDto = vehicleLicenseService.create(createVehicleLicenseRequestDto);
-        logger.info("vehicle license created successfully");
-        logger.info(createdVehicleLicenseDto.toString());
-        return ResponseEntity.ok(BaseResponseDto.success(createdVehicleLicenseDto));
-    }
+	@PostMapping
+	public ResponseEntity<BaseResponseDto> create(
+			@RequestBody CreateVehicleLicenseRequestDto createVehicleLicenseRequestDto) {
+		logger.info("creating vehicle license");
+		VehicleLicenseDto createdVehicleLicenseDto = vehicleLicenseService.create(createVehicleLicenseRequestDto);
+		logger.info("vehicle license created successfully");
+		logger.info(createdVehicleLicenseDto.toString());
+		return ResponseEntity.ok(BaseResponseDto.success(createdVehicleLicenseDto));
+	}
 
-    @GetMapping("/{ownerNid}")
-    public ResponseEntity<BaseResponseDto> getByOwnerNid(@PathVariable String ownerNid) {
-        logger.info("searching vehicle licenses by owner national id [" + ownerNid + "]");
-        List<VehicleLicenseDto> vehicleLicenseDtoList = vehicleLicenseService.getByOwnerNid(ownerNid);
-        logger.info("found vehicle licenses by owner national id [" + ownerNid + "]");
-        logger.info(vehicleLicenseDtoList.toString());
-        return ResponseEntity.ok(BaseResponseDto.success(vehicleLicenseDtoList));
-    }
+	@GetMapping("/{ownerNid}")
+	public ResponseEntity<BaseResponseDto> getByOwnerNid(@PathVariable String ownerNid) {
+		logger.info("searching vehicle licenses by owner national id [" + ownerNid + "]");
+		List<VehicleLicenseDto> vehicleLicenseDtoList = vehicleLicenseService.getByOwnerNid(ownerNid);
+		logger.info("found vehicle licenses by owner national id [" + ownerNid + "]");
+		logger.info(vehicleLicenseDtoList != null && !vehicleLicenseDtoList.isEmpty() ? vehicleLicenseDtoList.toString()
+				: null);
+		return ResponseEntity.ok(BaseResponseDto.success(vehicleLicenseDtoList));
+	}
 }
